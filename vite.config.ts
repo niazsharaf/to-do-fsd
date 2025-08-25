@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react()],
-  base: 'to-do-fsd',
+  base: '/to-do-fsd/',
   resolve: {
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),
