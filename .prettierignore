@@ -1,7 +1,0 @@
-node_modules
-dist
-build
-*.svg
-*.png
-*.jpg
-*.css.d.ts

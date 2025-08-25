@@ -6,7 +6,7 @@ import { Input, Button } from '@shared/ui'
 
 import type { Task } from '@entities/task/model/task.types.ts'
 
-import styles from './add-task-form.module.css'
+import styles from './add-task-form.module.scss'
 
 interface Props {
   onTaskAdded: (task: Partial<Task>) => void

@@ -1,5 +1,9 @@
 .container {
     min-width: 75rem;
+
+    @media screen and (max-width: 768px) {
+        min-width: auto;
+    }
 }
 
 .dndItem {
