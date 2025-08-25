@@ -1,3 +1,3 @@
 export function Footer() {
-  return <footer>я подвал</footer>
+  return <footer></footer>
 }

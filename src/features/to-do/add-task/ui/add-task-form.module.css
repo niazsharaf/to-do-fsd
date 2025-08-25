@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    gap: 8px;
+    min-width: 50rem;
+    width: 100%;
+    justify-content: center;
+    background: white;
+    padding: 3rem 0 1rem 0;
+}
+
+.form :is(input, textarea) {
+}
+
+.form textarea {
+    resize: none;
+    display: flex;
+}

@@ -1,0 +1,53 @@
+:root {
+    --btn-bg-hover: #181818;
+    --ta-bg: rgba(35, 35, 35, 0.01);
+    --ta-border: rgba(0, 0, 0, 0.12);
+    --ta-focus: #6a9bff;
+    --ta-text: #111;
+    --ta-ph: #888;
+}
+
+.textarea {
+    font: inherit;
+    color: var(--ta-text);
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--ta-border);
+    background: var(--ta-bg);
+    outline: none;
+    transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    min-height: 37px;
+    line-height: 1;
+    resize: vertical;
+}
+
+.textarea::placeholder {
+    color: var(--ta-ph);
+}
+
+.full {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.noResize {
+    resize: none;
+}
+
+.primary:focus {
+    border-color: var(--ta-focus);
+    box-shadow: 0 0 0 3px rgba(106, 155, 255, 0.2);
+}
+
+.text {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--ta-border);
+    border-radius: 0;
+    padding: 6px 2px;
+}
+
+.text:focus {
+    border-bottom-color: var(--ta-focus);
+    box-shadow: none;
+}

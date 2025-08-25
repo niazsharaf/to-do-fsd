@@ -1,0 +1,24 @@
+.container {
+    min-width: 75rem;
+}
+
+.dndItem {
+    position: relative;
+}
+
+.scrollable {
+    overflow-y: scroll;
+    max-height: 550px;
+
+}
+
+.dndItem[data-dragging] {
+    opacity: .5;
+}
+
+.dndItem[data-drop-target] {
+    opacity: .2;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 1rem 0;
+    border-radius: 1rem;
+}
