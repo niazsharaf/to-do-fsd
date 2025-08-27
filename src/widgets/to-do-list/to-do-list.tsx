@@ -67,7 +67,12 @@ export const ToDoList = () => {
         </TaskActionsContext>
       </ScroolableItems>
       <ContextMenu isVisible={!!completedTasks}>
-        <Button variant={'primary'} fullWidth={true} onClick={deleteCompetedTask}>
+        <Button
+          variant={'primary'}
+          fullWidth={true}
+          onClick={deleteCompetedTask}
+          ariaLabel={'Delete'}
+        >
           Удалить выбранные ({completedTasks})
         </Button>
       </ContextMenu>

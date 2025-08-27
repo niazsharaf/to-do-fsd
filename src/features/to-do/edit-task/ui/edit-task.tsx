@@ -14,7 +14,12 @@ interface Props {
 export const EditTask = ({ id, style, onEditTask, disabled }: Props) => {
   return (
     <span style={style}>
-      <Button onClick={() => onEditTask(id)} variant={'text'} disabled={disabled}>
+      <Button
+        onClick={() => onEditTask(id)}
+        variant={'text'}
+        disabled={disabled}
+        ariaLabel={'edit task'}
+      >
         <Pencil size={16} />
       </Button>
     </span>

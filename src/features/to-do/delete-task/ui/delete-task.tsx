@@ -13,7 +13,7 @@ type Props = {
 export const DeleteTask = ({ taskId, onDeleteTask, style }: Props) => {
   return (
     <div style={style}>
-      <Button variant={'text'} onClick={() => onDeleteTask(taskId)}>
+      <Button variant={'text'} onClick={() => onDeleteTask(taskId)} ariaLabel={'delete task'}>
         <Trash2 size={16} />
       </Button>
     </div>

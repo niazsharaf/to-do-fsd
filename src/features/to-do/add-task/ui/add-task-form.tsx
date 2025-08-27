@@ -32,7 +32,7 @@ export const AddTaskForm = ({ onTaskAdded }: Props) => {
       <Input {...bind('title')} label="Мне нужно сделать" required />
       <Input {...bind('description')} label="Описание" />
 
-      <Button type="submit" disabled={isEmpty(values)} variant={'primary'}>
+      <Button type="submit" disabled={isEmpty(values)} variant={'primary'} ariaLabel={'add task'}>
         Добавить
       </Button>
     </form>
