@@ -8,4 +8,5 @@ export interface Task extends TaskState {
   description: string
   createdAt: Date
   updatedAt: Date
+  isCompleted: boolean
 }

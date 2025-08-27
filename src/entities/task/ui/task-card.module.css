@@ -6,6 +6,15 @@
     --glass-shadow: rgba(0, 0, 0, 0.04);
 }
 
+.card[data-status="true"] {
+    opacity: .57;
+}
+
+.card[data-status="true"] .title,
+.card[data-status="true"] .desc {
+    text-decoration: line-through;
+}
+
 .card {
     position: relative;
     display: flex;

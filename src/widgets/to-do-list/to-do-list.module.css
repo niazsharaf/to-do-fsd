@@ -1,5 +1,6 @@
 .container {
     min-width: 75rem;
+    position: relative;
 
     @media screen and (max-width: 768px) {
         min-width: auto;

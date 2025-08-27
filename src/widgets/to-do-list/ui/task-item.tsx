@@ -1,5 +1,6 @@
 import type { Task } from '@entities/task/model/task.types.ts'
 
+import { CompleteTask } from '@features/to-do/complete-task/ui/complete-task.tsx'
 import { DeleteTask } from '@features/to-do/delete-task/ui/delete-task.tsx'
 import { EditableTaskView } from '@features/to-do/edit-task/ui/edit-task-view.tsx'
 import { EditTask } from '@features/to-do/edit-task/ui/edit-task.tsx'
@@ -16,7 +17,9 @@ export const TaskItem = ({
   onSave: (task: Partial<Task>) => void
   onCancel: () => void
 }) => {
-  const { onDeleteTask, onEditTask } = useTaskActions()
+  const { onDeleteTask, onEditTask, onComplete } = useTaskActions()
+
+  const checked = task.isCompleted!
 
   return (
     <>
@@ -36,6 +39,13 @@ export const TaskItem = ({
           id={task.id!}
           style={{ position: 'absolute', right: 0, top: 0 }}
           onEditTask={onEditTask}
+          disabled={isEditing || checked}
+        />
+        <CompleteTask
+          id={task.id!}
+          style={{ position: 'absolute', left: 0, top: -8 }}
+          onComplete={onComplete}
+          checked={checked}
           disabled={isEditing}
         />
       </div>

@@ -21,6 +21,7 @@ export const AddTaskForm = ({ onTaskAdded }: Props) => {
       title: values.title,
       description: values.description,
       createdAt: new Date(),
+      isCompleted: false,
       id: crypto.randomUUID(),
     })
     reset()

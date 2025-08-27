@@ -8,7 +8,7 @@ interface Props {
 
 export const TaskCard = ({ task }: Props) => {
   return (
-    <div className={styles.card} key={task.id}>
+    <div className={`${styles.card}`} data-status={task.isCompleted} key={task.id}>
       <h3 className={styles.title} title={task.title}>
         {task.title}
       </h3>

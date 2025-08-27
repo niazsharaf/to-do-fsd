@@ -20,6 +20,28 @@ export const useTasks = () => {
     setEditingTaskId(null)
   }
 
+  const toggleComplete = (id: string) => {
+    setTasks((prev) =>
+      prev.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              isCompleted: !t.isCompleted,
+              updatedAt: new Date(),
+            }
+          : t,
+      ),
+    )
+  }
+
+  const startComplete = (task: string) => {
+    toggleComplete(task)
+  }
+
+  const deleteCompetedTask = () => {
+    setTasks((prev) => prev.filter((task) => !task.isCompleted))
+  }
+
   const startEdit = (id: string) => setEditingTaskId(id)
 
   const deleteTask = (id: string) => {
@@ -31,9 +53,11 @@ export const useTasks = () => {
     addTask,
     deleteTask,
     setTasks,
+    startComplete,
     cancelEdit,
     saveTask,
     startEdit,
     editingTaskId,
+    deleteCompetedTask,
   }
 }

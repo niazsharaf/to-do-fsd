@@ -2,12 +2,13 @@ import React from 'react'
 
 type Props<T> = {
   items: readonly T[]
-  render: (item: T, index: number) => React.ReactNode
+  render: (item: T, index: string) => React.ReactNode
+  getKey: (item: T) => string
   emptyText?: string
   isLoading?: boolean
 }
 
-export function RenderItems<T>({ items, render, isLoading, emptyText }: Props<T>) {
+export function RenderItems<T>({ items, render, isLoading, emptyText, getKey }: Props<T>) {
   if (isLoading) {
     return (
       <span
@@ -34,6 +35,7 @@ export function RenderItems<T>({ items, render, isLoading, emptyText }: Props<T>
           alignItems: 'center',
           height: '-webkit-fill-available',
           opacity: 0.6,
+          margin: '2.5rem 0.5rem',
           transition: 'opacity 0.3s ease',
         }}
       >
@@ -42,7 +44,7 @@ export function RenderItems<T>({ items, render, isLoading, emptyText }: Props<T>
     )
   }
 
-  const content = items.map((item, i) => <React.Fragment>{render(item, i)}</React.Fragment>)
+  const content = items.map((item) => <React.Fragment>{render(item, getKey(item))}</React.Fragment>)
 
   return <>{content}</>
 }
