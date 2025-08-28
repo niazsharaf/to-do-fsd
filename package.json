@@ -1,7 +1,7 @@
 {
   "name": "jwt-auth-proj",
   "private": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "framer-motion": "^12.23.12",
     "lint": "^0.8.19",
     "lucide-react": "^0.541.0",
     "prettier": "^3.6.2",

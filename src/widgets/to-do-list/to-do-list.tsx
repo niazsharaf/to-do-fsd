@@ -2,13 +2,13 @@ import { useMemo } from 'react'
 
 import { ContextMenu } from '@shared/components/context-menu.tsx'
 import { RenderItems } from '@shared/components/render-items.tsx'
-import { ScroolableItems } from '@shared/components/scrollable-items.tsx'
+import { ScrollableItems } from '@shared/components/scrollable-items/scrollable-items.tsx'
 import { useDragReorder } from '@shared/hooks/useDragReorder.tsx'
-import { useTasks } from '@shared/hooks/useTasks.tsx'
 import { Button } from '@shared/ui'
 
 import { AddTaskForm } from '@features/to-do/add-task/ui/add-task-form.tsx'
 import { TaskActionsContext } from '@features/to-do/task-actions/model/task-actions-context.tsx'
+import { useTasks } from '@features/to-do/task-actions/model/useTasks.tsx'
 
 import { TaskItem } from '@widgets/to-do-list/ui/task-item.tsx'
 
@@ -41,7 +41,7 @@ export const ToDoList = () => {
   return (
     <div className={styles.container}>
       <AddTaskForm onTaskAdded={addTask} />
-      <ScroolableItems height={550}>
+      <ScrollableItems height={'calc(100vh - 20rem)'}>
         <TaskActionsContext
           value={{
             onDeleteTask: deleteTask,
@@ -65,7 +65,7 @@ export const ToDoList = () => {
             )}
           />
         </TaskActionsContext>
-      </ScroolableItems>
+      </ScrollableItems>
       <ContextMenu isVisible={!!completedTasks}>
         <Button
           variant={'primary'}

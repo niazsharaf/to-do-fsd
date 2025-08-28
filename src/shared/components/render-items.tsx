@@ -1,14 +1,23 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 
 type Props<T> = {
   items: readonly T[]
-  render: (item: T, index: string) => React.ReactNode
-  getKey: (item: T) => string
+  render: (item: T, index: string | number) => React.ReactNode
+  getKey: (item: T, index: string | number) => string
   emptyText?: string
   isLoading?: boolean
+  withAnimation?: boolean
 }
 
-export function RenderItems<T>({ items, render, isLoading, emptyText, getKey }: Props<T>) {
+export function RenderItems<T>({
+  items,
+  render,
+  isLoading,
+  emptyText,
+  getKey,
+  withAnimation = true,
+}: Props<T>) {
   if (isLoading) {
     return (
       <span
@@ -44,7 +53,24 @@ export function RenderItems<T>({ items, render, isLoading, emptyText, getKey }: 
     )
   }
 
-  const content = items.map((item) => <React.Fragment>{render(item, getKey(item))}</React.Fragment>)
+  const content = items.map((item, index) => {
+    const key = getKey ? getKey(item, index) : index
+    const element = render(item, index)
 
-  return <>{content}</>
+    return withAnimation ? (
+      <motion.div
+        key={key}
+        layout={'position'}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25 }}
+      >
+        {element}
+      </motion.div>
+    ) : (
+      <React.Fragment key={key}>{element}</React.Fragment>
+    )
+  })
+
+  return <AnimatePresence>{content}</AnimatePresence>
 }
