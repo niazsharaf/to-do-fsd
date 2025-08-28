@@ -1,3 +1,8 @@
+import { motion } from 'framer-motion'
+
+import { useDeviceType } from '@shared/hooks/useDeviceType.ts'
+import { useSwipeAction } from '@shared/hooks/useSwipeAction.ts'
+
 import type { Task } from '@entities/task/model/task.types.ts'
 
 import { CompleteTask } from '@features/to-do/complete-task/ui/complete-task.tsx'
@@ -18,37 +23,42 @@ export const TaskItem = ({
   onCancel: () => void
 }) => {
   const { onDeleteTask, onEditTask, onComplete } = useTaskActions()
+  const deviceType = useDeviceType()
+
+  const { bind } = useSwipeAction({
+    threshold: 100,
+    enabled: deviceType === 'mobile',
+    onSwipeLeft: () => onDeleteTask(task.id!),
+  })
 
   const checked = task.isCompleted!
 
   return (
-    <>
-      <div style={{ position: 'relative' }}>
-        <EditableTaskView
-          task={task}
-          mode={isEditing ? 'edit' : 'view'}
-          onCancel={onCancel}
-          onSave={onSave}
-        />
-        <DeleteTask
-          taskId={task.id!}
-          onDeleteTask={onDeleteTask}
-          style={{ position: 'absolute', right: 0, bottom: 0 }}
-        />
-        <EditTask
-          id={task.id!}
-          style={{ position: 'absolute', right: 0, top: 0 }}
-          onEditTask={onEditTask}
-          disabled={isEditing || checked}
-        />
-        <CompleteTask
-          id={task.id!}
-          style={{ position: 'absolute', left: 0, top: -8 }}
-          onComplete={onComplete}
-          checked={checked}
-          disabled={isEditing}
-        />
-      </div>
-    </>
+    <motion.div {...bind}>
+      <EditableTaskView
+        task={task}
+        mode={isEditing ? 'edit' : 'view'}
+        onCancel={onCancel}
+        onSave={onSave}
+      />
+      <DeleteTask
+        taskId={task.id!}
+        onDeleteTask={onDeleteTask}
+        style={{ position: 'absolute', right: 0, bottom: 0 }}
+      />
+      <EditTask
+        id={task.id!}
+        style={{ position: 'absolute', right: 0, top: 0 }}
+        onEditTask={onEditTask}
+        disabled={isEditing || checked}
+      />
+      <CompleteTask
+        id={task.id!}
+        style={{ position: 'absolute', left: 0, top: -8 }}
+        onComplete={onComplete}
+        checked={checked}
+        disabled={isEditing}
+      />
+    </motion.div>
   )
 }

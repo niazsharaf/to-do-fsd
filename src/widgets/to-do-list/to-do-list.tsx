@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { ContextMenu } from '@shared/components/context-menu.tsx'
 import { RenderItems } from '@shared/components/render-items.tsx'
 import { ScrollableItems } from '@shared/components/scrollable-items/scrollable-items.tsx'
+import { useDeviceType } from '@shared/hooks/useDeviceType.ts'
 import { useDragReorder } from '@shared/hooks/useDragReorder.tsx'
 import { Button } from '@shared/ui'
 
@@ -28,7 +29,11 @@ export const ToDoList = () => {
     deleteCompetedTask,
   } = useTasks()
 
-  const { getDragProps } = useDragReorder(setTasks, (t) => t.id!)
+  const deviceType = useDeviceType()
+
+  const { getDragProps } = useDragReorder(setTasks, (t) => t.id!, {
+    enableTouch: deviceType === 'mobile',
+  })
 
   const completedTasks = useMemo(
     () =>
