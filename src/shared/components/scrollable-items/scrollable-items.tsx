@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const ScrollableItems: React.FC<Props> = ({
-  height = 300,
+  height = 'calc(100vh - 20rem)',
   maxHeight = '70vh',
   className,
   style,

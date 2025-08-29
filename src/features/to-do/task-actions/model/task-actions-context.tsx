@@ -1,9 +1,13 @@
 import { useContext, createContext } from 'react'
 
+import type { Task } from '@entities/task/model/task.types.ts'
+
 type TaskActionsContext = {
-  onDeleteTask: (taskId: string) => void
-  onEditTask: (taskId: string) => void
+  onDelete: (taskId: string) => void
+  onEdit: (taskId: string) => void
   onComplete: (taskId: string) => void
+  onSave: (task: Partial<Task>) => void
+  onCancel: () => void
 }
 
 export const TaskActionsContext = createContext<TaskActionsContext | null>(null)

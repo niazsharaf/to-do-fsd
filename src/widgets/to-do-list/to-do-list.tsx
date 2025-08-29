@@ -46,12 +46,14 @@ export const ToDoList = () => {
   return (
     <div className={styles.container}>
       <AddTaskForm onTaskAdded={addTask} />
-      <ScrollableItems height={'calc(100vh - 20rem)'}>
+      <ScrollableItems>
         <TaskActionsContext
           value={{
-            onDeleteTask: deleteTask,
-            onEditTask: startEdit,
+            onDelete: deleteTask,
+            onEdit: startEdit,
             onComplete: startComplete,
+            onSave: saveTask,
+            onCancel: cancelEdit,
           }}
         >
           <RenderItems
@@ -60,12 +62,7 @@ export const ToDoList = () => {
             getKey={(task) => task.id!}
             render={(task) => (
               <div {...getDragProps(task.id!)} className={styles.dndItem}>
-                <TaskItem
-                  task={task}
-                  onCancel={cancelEdit}
-                  isEditing={editingTaskId === task.id}
-                  onSave={saveTask}
-                />
+                <TaskItem task={task} isEditing={editingTaskId === task.id} />
               </div>
             )}
           />

@@ -11,24 +11,19 @@ import { EditableTaskView } from '@features/to-do/edit-task/ui/edit-task-view.ts
 import { EditTask } from '@features/to-do/edit-task/ui/edit-task.tsx'
 import { useTaskActions } from '@features/to-do/task-actions/model/task-actions-context.tsx'
 
-export const TaskItem = ({
-  task,
-  isEditing,
-  onCancel,
-  onSave,
-}: {
+interface Props {
   task: Partial<Task>
   isEditing: boolean
-  onSave: (task: Partial<Task>) => void
-  onCancel: () => void
-}) => {
-  const { onDeleteTask, onEditTask, onComplete } = useTaskActions()
+}
+
+export const TaskItem = ({ task, isEditing }: Props) => {
+  const { onDelete, onEdit, onComplete, onCancel, onSave } = useTaskActions()
   const deviceType = useDeviceType()
 
   const { bind } = useSwipeAction({
     threshold: 100,
     enabled: deviceType === 'mobile',
-    onSwipeLeft: () => onDeleteTask(task.id!),
+    onSwipeLeft: () => onDelete(task.id!),
   })
 
   const checked = task.isCompleted!
@@ -43,13 +38,13 @@ export const TaskItem = ({
       />
       <DeleteTask
         taskId={task.id!}
-        onDeleteTask={onDeleteTask}
-        style={{ position: 'absolute', right: 0, bottom: 0 }}
+        onDeleteTask={onDelete}
+        style={{ position: 'absolute', right: 0, top: 0 }}
       />
       <EditTask
         id={task.id!}
-        style={{ position: 'absolute', right: 0, top: 0 }}
-        onEditTask={onEditTask}
+        style={{ position: 'absolute', right: 0, bottom: 0 }}
+        onEditTask={onEdit}
         disabled={isEditing || checked}
       />
       <CompleteTask
